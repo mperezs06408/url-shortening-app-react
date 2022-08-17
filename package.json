@@ -1,0 +1,43 @@
+{
+  "name": "url-shortening-app-react",
+  "version": "1.0.0",
+  "description": "Url Shortening app with ReactJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --open --mode development --config webpack.config.js",
+    "build": "webpack --mode production --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mperezs06408/url-shortening-app-react.git"
+  },
+  "keywords": [
+    "ReactJS",
+    "API",
+    "Mobile",
+    "First"
+  ],
+  "author": "@ichbinsantiago",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mperezs06408/url-shortening-app-react/issues"
+  },
+  "homepage": "https://mperezs06408.github.io/url-shortening-app-react",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "@svgr/webpack": "^6.3.1",
+    "babel-loader": "^8.2.5",
+    "html-loader": "^4.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.10.0"
+  }
+}
