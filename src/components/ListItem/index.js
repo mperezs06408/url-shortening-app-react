@@ -6,7 +6,7 @@ function ListItem(props) {
             className={props.styleClasses}
         >
             {(props.type == "link") && 
-                <a className='navbar__link--item'>{props.children}</a>
+                <a className={props.styleClassesLink}>{props.children}</a>
             }
             {(props.type != "link") &&
                 props.children

@@ -1,0 +1,40 @@
+/*General component classes*/
+.btn{
+    background-color: var(--cyan);
+    color: #FFF;
+    font-weight: bold;
+    width: 10rem;
+    height: 3rem;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+.btn:hover{
+    filter: brightness(2);
+}
+
+.btn--link{
+    border-radius: 3rem;
+}
+
+.btn--copied,
+.btn--submit{
+    border-radius: .5rem;
+}
+
+.btn--copied{
+    width: auto;
+    margin: 0 1rem 1rem;
+}
+
+nav svg {
+    fill: var(--very-dark-violet);
+}
+
+.card{
+    position: relative;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+}

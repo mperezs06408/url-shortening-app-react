@@ -2,10 +2,16 @@ import React from 'react'
 
 function UrlGenerator(props) {
     return(
-        <form className='form'>
-            <input className='form__input' type="text"></input>
+        <form 
+            id='form'
+            style={{
+                backgroundImage: 'url(./images/bg-shorten-mobile.svg'
+            }}
+        >
+            <input className='form__input' type="text" placeholder='Shorten a link here...'></input>
+            {!true && <p className='form--alarm'>Please add a link</p>}
+            
             {props.children}
-            <p className='form--alarm'>Please add a link</p>
         </form>
     )
 }
