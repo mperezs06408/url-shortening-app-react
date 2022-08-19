@@ -30,7 +30,9 @@
 #form .form__input{
     width: 100%;
     padding: .8rem .5rem;
-    border-radius: .3rem;;
+    border-radius: .3rem;
+    border: .2rem solid transparent;
+    transition: all .3s ease;
 }
 
 .form__input::placeholder{
@@ -76,6 +78,10 @@
 
 .generator__text--short{
     color:var(--grayish-violet);
+}
+
+.generator__text--short:visited {
+    color: var(--dark-violet)
 }
 
 /*Info components*/

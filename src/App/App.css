@@ -17,14 +17,24 @@
     border-radius: 3rem;
 }
 
+.btn--copy,
 .btn--copied,
 .btn--submit{
     border-radius: .5rem;
 }
 
-.btn--copied{
+.btn--copy,
+.btn--copied {
     width: auto;
     margin: 0 1rem 1rem;
+}
+
+.btn--copied {
+    background-color: var(--dark-violet);
+}
+
+.btn--copied:hover{
+    filter: brightness(.8);
 }
 
 nav svg {
