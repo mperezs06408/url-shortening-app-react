@@ -1,11 +1,14 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react';
+import { Context } from '../Context';
 import {CardItem} from '../CardItem';
 import BrandRecognition from '../../assets/icon-brand-recognition.svg';
 import DetailedRecords from '../../assets/icon-detailed-records.svg';
 import FullyCustomizable from '../../assets/icon-fully-customizable.svg';
 import './Main.css';
 
-function Main({getStartedBtn, screenWidth, children}) {
+function Main({getStartedBtn, children}) {
+    const {screenWidth} = useContext(Context);
+
     const [styles, setStyles] = useState({});
 
     useEffect(() => {

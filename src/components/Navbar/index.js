@@ -1,10 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
+import { Context } from '../Context';
 import { Button } from '../Button';
 import { List } from '../List';
 import { ListItem } from '../ListItem';
 import './Navbar.css';
 
-function Navbar({logo, screenWidth}) {
+function Navbar({logo}) {
+    const {screenWidth} = useContext(Context);
+
     const [showMenu, setShowMenu] = useState(false);
     
     const handleClick = () => {

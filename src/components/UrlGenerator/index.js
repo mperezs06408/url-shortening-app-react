@@ -1,8 +1,15 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react';
+import { Context } from '../Context';
 
-function UrlGenerator({createUrlItem, setLoadingUrl, setError, screenWidth, children}) {
-    const [urlValue, setUrlValue] = useState('');
-    const [validUrl, setValidUrl] = useState(true);
+function UrlGenerator({children}) {
+    const {
+        screenWidth, 
+        urlValue, 
+        validUrl, 
+        handleChange, 
+        onSubmit
+    } = useContext(Context);
+    
     const [validationStyles, setValidationStyles] = useState({});
     const [styles, setStyles] = useState({});
 
@@ -30,53 +37,6 @@ function UrlGenerator({createUrlItem, setLoadingUrl, setError, screenWidth, chil
             })
         }
     }, [screenWidth])
-
-    const handleChange = (e) => {
-        const value = e.target.value;
-
-        if (value){
-            setValidUrl(true);
-        } else {
-            setValidUrl(false)
-        }
-
-        setUrlValue(value);
-    } 
-
-    const getShortedUrl = async () => {
-        console.time('request');
-        setLoadingUrl(true);
-        try {
-            const request = await fetch(`https://api.shrtco.de/v2/shorten?url=${urlValue}`);
-            const jsonResponse = await request.json();
-
-            if (jsonResponse.ok){
-                const result = jsonResponse.result;
-
-                createUrlItem(result.original_link, result.short_link);
-            } else {
-                setValidUrl(false);
-            }
-            // throw new Error('test');
-            setLoadingUrl(false);
-            console.timeEnd('request');
-        } catch (e) {
-            console.log('Something has happened: '+e);
-            setError(true);
-        }
-    }
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        
-        if (validUrl && !!urlValue){
-            getShortedUrl();
-        } else {
-            setValidUrl(false);
-        }
-    }
-
-
 
     return(
         <form 

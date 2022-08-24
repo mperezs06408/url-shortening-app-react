@@ -3,7 +3,7 @@
         transform: scale(1);
     }
     70%{
-        transform: scale(1.25);
+        transform: scale(1.15);
     }
     100%{
         transform: scale(1);
@@ -28,7 +28,7 @@
 
 .error svg {
     fill: var(--red);
-    width: 20%;
+    width: 15%;
     animation-name: error-grow;
     animation-duration: 5s;
     animation-timing-function: ease-in-out;
