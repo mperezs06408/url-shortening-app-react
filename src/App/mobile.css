@@ -93,9 +93,6 @@
         grid-column: 2/3;
         grid-row: 1/2;
     }
-    .generator__item:nth-child(n+2){
-        margin: 0;
-    }
     .generator__item .card{
         flex-direction: row;
         align-items: center;
