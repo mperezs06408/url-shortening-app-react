@@ -24,7 +24,7 @@ function ContextProvider(props){
 
         itemList.push({
             url: url.toLowerCase(),
-            short: urlShorted.toLowerCase(),
+            short: urlShorted,
             copied: false 
         });
 
@@ -69,7 +69,6 @@ function ContextProvider(props){
 
             if (jsonResponse.ok){
                 const result = jsonResponse.result;
-
                 createUrlItem(result.original_link, result.short_link);
             } else {
                 setValidUrl(false);
