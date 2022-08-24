@@ -1,20 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Button } from '../Button';
 import { List } from '../List';
 import { ListItem } from '../ListItem';
 import './Navbar.css';
 
-function Navbar(props) {
+function Navbar({logo, screenWidth}) {
     const [showMenu, setShowMenu] = useState(false);
-
+    
     const handleClick = () => {
         setShowMenu(prev => !prev)
     }
 
+    useEffect(() => {
+        if (screenWidth) {
+            setShowMenu(false)
+        }
+    }, [screenWidth]);
+
     return(
         <nav id="navbar">
-            {props.logo}
-            {showMenu && 
+            {logo}
+            {(showMenu || screenWidth) && 
                 <div className='navbar__menu'>
                     <List
                         styleClasses="navbar__list navbar__list--links"

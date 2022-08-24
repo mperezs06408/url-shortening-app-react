@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 
-function UrlGenerator(props) {
+function UrlGenerator({createUrlItem, setLoadingUrl, setError, screenWidth, children}) {
     const [urlValue, setUrlValue] = useState('');
     const [validUrl, setValidUrl] = useState(true);
-    const [validationStyles, setValidationStyles] = useState({})
+    const [validationStyles, setValidationStyles] = useState({});
+    const [styles, setStyles] = useState({});
 
     useEffect(() => {
         if(!validUrl) {
@@ -17,6 +18,18 @@ function UrlGenerator(props) {
         }
     }        
     ,[validUrl]);
+
+    useEffect(() => {
+        if (screenWidth) {
+            setStyles({
+                backgroundImage: 'url(./images/bg-shorten-desktop.svg)'
+            })
+        } else {
+            setStyles({
+                backgroundImage: 'url(./images/bg-shorten-mobile.svg)'
+            })
+        }
+    }, [screenWidth])
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -32,7 +45,7 @@ function UrlGenerator(props) {
 
     const getShortedUrl = async () => {
         console.time('request');
-        props.setLoadingUrl(true);
+        setLoadingUrl(true);
         try {
             const request = await fetch(`https://api.shrtco.de/v2/shorten?url=${urlValue}`);
             const jsonResponse = await request.json();
@@ -40,16 +53,16 @@ function UrlGenerator(props) {
             if (jsonResponse.ok){
                 const result = jsonResponse.result;
 
-                props.createUrlItem(result.original_link, result.short_link);
+                createUrlItem(result.original_link, result.short_link);
             } else {
                 setValidUrl(false);
             }
             // throw new Error('test');
-            props.setLoadingUrl(false);
+            setLoadingUrl(false);
             console.timeEnd('request');
         } catch (e) {
             console.log('Something has happened: '+e);
-            props.setError(true);
+            setError(true);
         }
     }
 
@@ -63,12 +76,12 @@ function UrlGenerator(props) {
         }
     }
 
+
+
     return(
         <form 
             id='form'
-            style={{
-                backgroundImage: 'url(./images/bg-shorten-mobile.svg'
-            }}
+            style={styles}
             onSubmit={onSubmit}
         >
             <input 
@@ -81,7 +94,7 @@ function UrlGenerator(props) {
             ></input>
             {!validUrl && <p className='form--alarm'>Please add a link</p>}
             
-            {props.children}
+            {children}
         </form>
     )
 }

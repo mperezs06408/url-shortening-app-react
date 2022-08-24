@@ -4,12 +4,18 @@
     display: grid;
     grid-template-columns: 5% 1fr 5%;
     grid-template-rows: repeat(5, auto);
+    justify-content: center;
 }
 
 #form,
 .generator__list,
 .main__section{
     grid-column: 2/3;
+}
+.main__section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 /*Form components*/
 #form{
@@ -100,6 +106,7 @@
 .main__section--description{
     color: var(--grayish-violet);
     font-size: .9rem;
+    max-width: 430px;
     margin-bottom: 5rem;
 }
 
@@ -107,6 +114,7 @@
     position: relative;
     grid-row:4/5;
     text-align: center;
+    justify-self: center;
 }
 
 .main__section--article::before{
@@ -120,6 +128,10 @@
     width: .5rem;
     height: 100%;
     margin: auto;
+}
+
+.main__section .card{
+    max-width: 290px;
 }
 
 .main__section .card:nth-child(n+2){

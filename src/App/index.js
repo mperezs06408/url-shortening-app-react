@@ -13,6 +13,8 @@ import {Footer} from '../components/Footer';
 import MainLogo from '../assets/logo.svg';
 /**CSS Stylesheets */
 import './App.css';
+import './mobile.css';
+import './desktop.css';
 /**Skeleton componets */
 import { Loading } from '../components/Loading';
 import { Error } from '../components/Error';
@@ -23,6 +25,12 @@ function App() {
     const [urlItems, setUrlItems] = useState([]);
     const [loadingUrl, setLoadingUrl] = useState(false);
     const [error, setError] = useState(false);
+    const [screenWidth, setScreenWidth] = useState(false);
+
+    useEffect(() => {
+        handleWindowResolution();
+        window.addEventListener('resize', handleWindowResolution)
+    },[])
 
     const createUrlItem = (url, urlShorted) => {
         const itemList = [...urlItems];
@@ -44,11 +52,20 @@ function App() {
         setUrlItems(itemList);
     }
 
+    const handleWindowResolution = () => {
+        if (window.innerWidth > 768) {
+            setScreenWidth(true);
+        } else {
+            setScreenWidth(false);
+        }
+    }
+
 
     return(
         <>
             <Navbar
                 logo={<MainLogo/>}
+                screenWidth={screenWidth}
             />
             <Header>
                 <Button
@@ -62,16 +79,17 @@ function App() {
                 >Get Started
                 </Button>
             }
+                screenWidth={screenWidth}
             >
                 <UrlGenerator
                     createUrlItem={createUrlItem}
-                    loadingUrl={loadingUrl}
                     setLoadingUrl={setLoadingUrl}
                     setError={setError}
+                    screenWidth={screenWidth}
                 >
                     <Button
                         styleClasses="btn btn--submit"
-                    >Shortening</Button>
+                    >Shorten it!</Button>
                 </UrlGenerator>
 
                 {(loadingUrl && !error) && 

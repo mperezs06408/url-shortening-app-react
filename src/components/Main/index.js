@@ -1,14 +1,28 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import {CardItem} from '../CardItem';
 import BrandRecognition from '../../assets/icon-brand-recognition.svg';
 import DetailedRecords from '../../assets/icon-detailed-records.svg';
 import FullyCustomizable from '../../assets/icon-fully-customizable.svg';
 import './Main.css';
 
-function Main(props) {
+function Main({getStartedBtn, screenWidth, children}) {
+    const [styles, setStyles] = useState({});
+
+    useEffect(() => {
+        if (screenWidth) {
+            setStyles({
+                backgroundImage: 'url(./images/bg-boost-desktop.svg'
+            })
+        } else {
+            setStyles({
+                backgroundImage: 'url(./images/bg-boost-mobile.svg'
+            })
+        }
+    }, [screenWidth]);
+
     return(
         <main id='main'>
-            {props.children}
+            {children}
             <section className='main__section main__section--info'>
                 <h2 className='main__section--title'>Advanced Statistics</h2>
                 <p className='main__section--description'>Track how your links are performing 
@@ -45,12 +59,10 @@ function Main(props) {
             </article>
             <section 
                 className='main__section main__section--boost'
-                style={{
-                    backgroundImage: 'url(./images/bg-boost-mobile.svg'
-                }}
+                style={styles}
             >
                 <h2>Boost your links today</h2>
-                {props.getStartedBtn}
+                {getStartedBtn}
             </section>
         </main>
     )
